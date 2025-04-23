@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, useCallback, memo } from 'react';
 import { FaCheck, FaTimes, FaHeart, FaArrowRight, FaGift, FaGlasses, FaMapMarkerAlt } from 'react-icons/fa';
 import { FaBirthdayCake } from 'react-icons/fa';
 import Image from 'next/image';
+import QuizOption from './QuizOption';
 
 interface QuizProps {
   onComplete: (score: number) => void;
@@ -26,8 +27,8 @@ const Confetti = memo(() => (
           left: `${Math.random() * 100}%`,
           top: `-5%`,
           backgroundColor: `hsl(${hue}, 80%, ${isRed ? 60 : 65}%)`,
-          width: `${Math.random() * 8 + 5}px`,
-          height: `${Math.random() * 16 + 6}px`,
+          width: `${Math.random() * 6 + 4}px`,
+          height: `${Math.random() * 10 + 6}px`,
           transform: `rotate(${Math.random() * 360}deg)`,
           animationDuration: `${Math.random() * 3 + 2}s`,
           animationDelay: `${Math.random() * 0.5}s`
@@ -38,51 +39,6 @@ const Confetti = memo(() => (
 ));
 
 Confetti.displayName = 'Confetti';
-
-// Componente de opção simplificado
-function QuizOption({ 
-  option, 
-  index, 
-  selected,
-  correct, 
-  showFeedback,
-  correctIndex,
-  onSelect 
-}: {
-  option: string;
-  index: number;
-  selected: boolean;
-  correct: boolean;
-  showFeedback: boolean;
-  correctIndex: number;
-  onSelect: () => void;
-}) {
-  return (
-    <button
-      onClick={onSelect}
-      className={`w-full text-left p-4 my-2 rounded-lg border-2 transition-all duration-300 hover:bg-red-100 transform hover:scale-[1.01] active:scale-[0.99] shadow-sm
-        ${selected && showFeedback && correct ? 'bg-green-50 border-green-400 text-green-700' : ''}
-        ${selected && showFeedback && !correct ? 'bg-red-50 border-red-400 text-red-700' : ''}
-        ${selected && !showFeedback ? 'bg-red-100 border-red-400 text-gray-800' : ''}
-        ${!selected ? 'border-gray-200 text-gray-800 hover:bg-gray-50' : ''}
-        ${showFeedback && index === correctIndex && !selected ? 'bg-green-50 border-green-400 text-green-700' : ''}
-      `}
-    >
-      <div className="flex items-center">
-        <span className="flex-grow font-medium">{option}</span>
-        {showFeedback && correct && selected && (
-          <FaCheck className="text-green-500 ml-2 animate-bounce" />
-        )}
-        {showFeedback && !correct && selected && (
-          <FaTimes className="text-red-500 ml-2 animate-bounce" />
-        )}
-        {showFeedback && index === correctIndex && !selected && (
-          <FaCheck className="text-green-500 ml-2 animate-bounce" />
-        )}
-      </div>
-    </button>
-  );
-}
 
 export default function Quiz({ onComplete }: QuizProps) {
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -265,29 +221,29 @@ export default function Quiz({ onComplete }: QuizProps) {
 
   if (showIntro) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-red-50 to-pink-50 p-4">
-        <div className="bg-white rounded-xl max-w-md w-full p-6 shadow-lg animate-fade-in">
-          <div className="text-center mb-6">
-            <FaBirthdayCake className="mx-auto text-4xl text-red-400 mb-4 animate-pulse" />
-            <h1 className="text-2xl font-bold text-red-400 mb-2">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-red-50 to-pink-50 p-2 sm:p-4">
+        <div className="bg-white rounded-xl max-w-md w-full p-4 sm:p-6 shadow-lg animate-fade-in">
+          <div className="text-center mb-4 sm:mb-6">
+            <FaBirthdayCake className="mx-auto text-3xl sm:text-4xl text-red-400 mb-3 animate-pulse" />
+            <h1 className="text-xl sm:text-2xl font-bold text-red-400 mb-2">
               Perguntas Especiais de Aniversário
             </h1>
-            <div className="flex items-center justify-center gap-2 mb-4">
+            <div className="flex items-center justify-center gap-2 mb-3">
               <div className="h-px w-12 bg-gradient-to-r from-transparent to-red-300"></div>
               <FaHeart className="text-red-400 text-sm animate-pulse" />
               <div className="h-px w-12 bg-gradient-to-l from-transparent to-red-300"></div>
             </div>
-            <p className="text-gray-600 italic mb-4">
+            <p className="text-gray-600 italic mb-3 text-sm sm:text-base">
               "Nao tem presente infelizmente, to liso."
             </p>
-            <p className="text-gray-800 mb-4">
+            <p className="text-gray-800 mb-3 text-sm sm:text-base">
               Ei! Preparei este quiz especial para testar o quanto você me conhece. 
               Responda as 5 perguntas para desbloquear sua surpresa de aniversário!
             </p>
             
             <button 
               onClick={handleStartQuiz}
-              className="w-full px-8 py-4 bg-red-400 hover:bg-red-500 text-white rounded-lg font-medium text-lg transform transition-all duration-300 hover:scale-105 active:scale-95 shadow-md mt-4"
+              className="w-full px-6 py-3 sm:px-8 sm:py-4 bg-red-400 hover:bg-red-500 text-white rounded-lg font-medium text-base sm:text-lg transform transition-all duration-300 hover:scale-105 active:scale-95 shadow-md mt-3"
               disabled={isProcessing}
             >
               Começar Quiz <FaGift className="inline ml-1 animate-bounce" />
@@ -301,38 +257,38 @@ export default function Quiz({ onComplete }: QuizProps) {
   // Mostrar a mensagem de localização do presente físico
   if (showPresent) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-red-50 to-pink-50 p-4">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-red-50 to-pink-50 p-2 sm:p-4">
         {showConfetti && <Confetti />}
         
-        <div className="bg-white rounded-xl max-w-md w-full p-6 shadow-lg animate-fade-in">
-          <div className="text-center mb-4">
-            <FaGift className="mx-auto text-4xl text-red-400 mb-2 animate-bounce" />
-            <h1 className="text-2xl font-bold text-red-400 mb-2">
+        <div className="bg-white rounded-xl max-w-md w-full p-4 sm:p-6 shadow-lg animate-fade-in">
+          <div className="text-center mb-3 sm:mb-4">
+            <FaGift className="mx-auto text-3xl sm:text-4xl text-red-400 mb-2 animate-bounce" />
+            <h1 className="text-xl sm:text-2xl font-bold text-red-400 mb-2">
               Atenção Especial!
             </h1>
-            <div className="flex items-center justify-center gap-2 mb-4">
+            <div className="flex items-center justify-center gap-2 mb-3">
               <div className="h-px w-12 bg-gradient-to-r from-transparent to-red-300"></div>
               <FaHeart className="text-red-400 text-sm animate-pulse" />
               <div className="h-px w-12 bg-gradient-to-l from-transparent to-red-300"></div>
             </div>
           </div>
           
-          <div className="mb-6">
-            <p className="text-gray-700 text-center mb-4">
+          <div className="mb-4 sm:mb-6">
+            <p className="text-gray-700 text-center mb-3 text-sm sm:text-base">
               Você concluiu o quiz! tem algo esperando voce:
             </p>
             
-            <div className="bg-red-50 rounded-lg p-5 border-2 border-red-200 mb-5 shadow-md">
-              <p className="text-center font-medium text-gray-800 flex items-center justify-center gap-2 mb-3">
+            <div className="bg-red-50 rounded-lg p-3 sm:p-5 border-2 border-red-200 mb-4 shadow-md">
+              <p className="text-center font-medium text-gray-800 flex items-center justify-center gap-2 mb-2 text-sm sm:text-base">
                 <FaMapMarkerAlt className="text-red-400" />
                 Vá até a Maria Anthonia e fale a senha:
               </p>
-              <div className="bg-white rounded-lg p-3 shadow-inner">
-                <p className="text-center text-red-500 text-xl font-bold mb-2 animate-pulse-soft">
+              <div className="bg-white rounded-lg p-2 sm:p-3 shadow-inner">
+                <p className="text-center text-red-500 text-lg sm:text-xl font-bold mb-1 animate-pulse-soft">
                   "o felipe é muito glow"
                 </p>
               </div>
-              <p className="text-center text-xs text-gray-500 italic mt-3">
+              <p className="text-center text-xs text-gray-500 italic mt-2">
                 Tem algo esperando por você! 💖
               </p>
             </div>
@@ -341,7 +297,7 @@ export default function Quiz({ onComplete }: QuizProps) {
           <button
             onClick={handleContinueToResults}
             disabled={isProcessing}
-            className="w-full p-4 bg-red-400 hover:bg-red-500 text-white rounded-lg font-medium text-lg transform transition-all duration-300 hover:scale-105 active:scale-95 shadow-md flex items-center justify-center animate-pulse-soft"
+            className="w-full p-3 sm:p-4 bg-red-400 hover:bg-red-500 text-white rounded-lg font-medium text-base sm:text-lg transform transition-all duration-300 hover:scale-105 active:scale-95 shadow-md flex items-center justify-center animate-pulse-soft"
           >
             Continue!
             <FaArrowRight className="inline ml-2 animate-bounce" />
@@ -351,29 +307,29 @@ export default function Quiz({ onComplete }: QuizProps) {
           {showPasswordModal && (
             <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4 animate-fade-in" onClick={() => setShowPasswordModal(false)}>
               <div 
-                className="bg-white p-8 rounded-2xl max-w-md w-full animate-fade-in-scale shadow-xl border-2 border-red-200" 
+                className="bg-white p-4 sm:p-6 rounded-2xl max-w-md w-full animate-fade-in-scale shadow-xl border-2 border-red-200" 
                 onClick={(e) => e.stopPropagation()}
                 style={{ 
                   backgroundImage: 'radial-gradient(circle at top right, rgba(255,226,226,0.3) 0%, transparent 70%)',
                   backgroundSize: 'cover' 
                 }}
               >
-                <div className="relative mb-6">
-                  <div className="absolute -top-1 -left-1 w-12 h-12 bg-red-100/50 rounded-full -z-10"></div>
-                  <div className="absolute -bottom-1 -right-1 w-16 h-16 bg-red-50/60 rounded-full -z-10"></div>
-                  <h3 className="text-2xl font-bold text-red-400 mb-2 text-center">
+                <div className="relative mb-4 sm:mb-6">
+                  <div className="absolute -top-1 -left-1 w-10 h-10 sm:w-12 sm:h-12 bg-red-100/50 rounded-full -z-10"></div>
+                  <div className="absolute -bottom-1 -right-1 w-14 h-14 sm:w-16 sm:h-16 bg-red-50/60 rounded-full -z-10"></div>
+                  <h3 className="text-xl sm:text-2xl font-bold text-red-400 mb-2 text-center">
                     <FaGift className="inline-block mr-2 mb-1 animate-pulse" />
                     Senha Secreta
                   </h3>
                   <div className="flex items-center justify-center gap-2 mt-2">
-                    <div className="h-px w-16 bg-gradient-to-r from-transparent to-red-300"></div>
+                    <div className="h-px w-12 sm:w-16 bg-gradient-to-r from-transparent to-red-300"></div>
                     <FaHeart className="text-red-400 text-sm animate-pulse" />
-                    <div className="h-px w-16 bg-gradient-to-l from-transparent to-red-300"></div>
+                    <div className="h-px w-12 sm:w-16 bg-gradient-to-l from-transparent to-red-300"></div>
                   </div>
                 </div>
                 
-                <div className="mb-6">
-                  <p className="text-gray-700 mb-5 text-center">
+                <div className="mb-4 sm:mb-6">
+                  <p className="text-gray-700 mb-4 text-center text-sm sm:text-base">
                     Para desbloquear sua surpresa especial de aniversário, digite a senha:
                   </p>
                   
@@ -383,7 +339,7 @@ export default function Quiz({ onComplete }: QuizProps) {
                         type="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        className="w-full px-4 py-4 bg-red-50/30 text-center text-xl focus:outline-none focus:bg-white transition-colors duration-300"
+                        className="w-full px-3 py-3 sm:px-4 sm:py-4 bg-red-50/30 text-center text-lg sm:text-xl focus:outline-none focus:bg-white transition-colors duration-300"
                         placeholder="777"
                         autoFocus
                       />
@@ -392,23 +348,23 @@ export default function Quiz({ onComplete }: QuizProps) {
                   </div>
                   
                   {passwordError && (
-                    <p className="text-red-500 text-sm mt-3 text-center animate-pulse">
+                    <p className="text-red-500 text-sm mt-2 text-center animate-pulse">
                       Senha incorreta! Tente novamente.
                     </p>
                   )}
                 </div>
                 
-                <div className="flex justify-center gap-4">
+                <div className="flex justify-center gap-3 sm:gap-4">
                   <button
                     onClick={() => setShowPasswordModal(false)}
-                    className="px-6 py-3 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-xl text-sm font-medium transition-all duration-300 hover:shadow-md flex-1 transform hover:scale-105 active:scale-95"
+                    className="px-4 py-2 sm:px-6 sm:py-3 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-xl text-sm font-medium transition-all duration-300 hover:shadow-md flex-1 transform hover:scale-105 active:scale-95"
                   >
                     Cancelar
                   </button>
                   
                   <button
                     onClick={handlePasswordSubmit}
-                    className="px-6 py-3 bg-red-400 hover:bg-red-500 text-white rounded-xl text-sm font-medium transition-all duration-300 hover:shadow-md flex-1 transform hover:scale-105 active:scale-95 relative overflow-hidden"
+                    className="px-4 py-2 sm:px-6 sm:py-3 bg-red-400 hover:bg-red-500 text-white rounded-xl text-sm font-medium transition-all duration-300 hover:shadow-md flex-1 transform hover:scale-105 active:scale-95 relative overflow-hidden"
                   >
                     <span className="relative z-10">Desbloquear</span>
                     <span className="absolute inset-0 bg-gradient-to-r from-red-400 to-red-500 opacity-0 hover:opacity-100 transition-opacity duration-300"></span>
@@ -423,39 +379,39 @@ export default function Quiz({ onComplete }: QuizProps) {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-red-50 to-pink-50 p-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-red-50 to-pink-50 p-2 sm:p-4">
       {showConfetti && <Confetti />}
       
-      <div className="bg-white rounded-xl max-w-md w-full p-6 shadow-lg animate-fade-in">
-        <div className="absolute top-4 left-4 text-red-200 text-4xl opacity-20">
+      <div className="bg-white rounded-xl max-w-md w-full p-4 sm:p-6 shadow-lg animate-fade-in">
+        <div className="absolute top-3 left-3 text-red-200 text-3xl sm:text-4xl opacity-20">
           <FaBirthdayCake />
         </div>
-        <div className="absolute bottom-4 right-4 text-red-200 text-4xl opacity-20">
+        <div className="absolute bottom-3 right-3 text-red-200 text-3xl sm:text-4xl opacity-20">
           <FaGift />
         </div>
         
-        <div className="text-center mb-3 relative z-10">
-          <h1 className="text-2xl font-bold text-red-400 mb-2">
+        <div className="text-center mb-2 sm:mb-3 relative z-10">
+          <h1 className="text-xl sm:text-2xl font-bold text-red-400 mb-1 sm:mb-2">
             Pergunta {currentQuestion + 1}
           </h1>
-          <p className="text-gray-600">
+          <p className="text-gray-600 text-sm sm:text-base">
             <FaGlasses className="inline mr-1" /> Vamos ver o quanto você me conhece...
           </p>
         </div>
         
-        <div className="w-full bg-gray-100 h-3 rounded-full mb-6">
+        <div className="w-full bg-gray-100 h-2 sm:h-3 rounded-full mb-4 sm:mb-6">
           <div 
-            className="bg-red-400 h-3 rounded-full transition-all duration-500"
+            className="bg-red-400 h-2 sm:h-3 rounded-full transition-all duration-500"
             style={{ width: `${((currentQuestion + (showFeedback ? 1 : 0)) / questions.length) * 100}%` }}
           ></div>
         </div>
         
-        <div className={`mb-6 ${shake ? 'animate-shake' : ''}`}>
-          <h2 className="text-xl font-semibold mb-4 text-gray-800">
+        <div className={`mb-4 sm:mb-6 ${shake ? 'animate-shake' : ''}`}>
+          <h2 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4 text-gray-800">
             {questions[currentQuestion].text}
           </h2>
           
-          <div className="space-y-3">
+          <div className="space-y-2 sm:space-y-3">
             {questions[currentQuestion].options.map((option, index) => (
               <QuizOption
                 key={index}
@@ -472,8 +428,8 @@ export default function Quiz({ onComplete }: QuizProps) {
         </div>
         
         {showFeedback && (
-          <div className="mt-4 animate-fade-in">
-            <p className={`mb-4 p-4 rounded-lg font-medium ${isCorrect ? 'bg-green-50 text-green-700 border-l-4 border-green-400' : 'bg-red-50 text-red-700 border-l-4 border-red-400'}`}>
+          <div className="mt-3 sm:mt-4 animate-fade-in">
+            <p className={`mb-3 sm:mb-4 p-3 sm:p-4 rounded-lg font-medium text-sm sm:text-base ${isCorrect ? 'bg-green-50 text-green-700 border-l-4 border-green-400' : 'bg-red-50 text-red-700 border-l-4 border-red-400'}`}>
               {isCorrect ? (
                 <span>
                   <FaCheck className="inline mr-2" /> 
@@ -489,7 +445,7 @@ export default function Quiz({ onComplete }: QuizProps) {
             <button
               onClick={handleNext}
               disabled={isProcessing}
-              className="w-full p-4 bg-red-400 hover:bg-red-500 text-white rounded-lg font-medium text-lg transform transition-all duration-300 hover:scale-105 active:scale-95 shadow-md flex items-center justify-center"
+              className="w-full p-3 sm:p-4 bg-red-400 hover:bg-red-500 text-white rounded-lg font-medium text-base sm:text-lg transform transition-all duration-300 hover:scale-105 active:scale-95 shadow-md flex items-center justify-center"
             >
               {currentQuestion < questions.length - 1 ? 'Próxima Pergunta' : 'Ver Minha Surpresa'} 
               <FaArrowRight className="inline ml-2 animate-bounce" />
@@ -497,8 +453,8 @@ export default function Quiz({ onComplete }: QuizProps) {
           </div>
         )}
         
-        <div className="mt-6 text-center">
-          <p className="text-gray-600 flex items-center justify-center">
+        <div className="mt-4 sm:mt-6 text-center">
+          <p className="text-gray-600 flex items-center justify-center text-sm sm:text-base">
             <FaHeart className="text-red-400 mr-1 animate-pulse" />
             <span>Pontuação: {score} de {currentQuestion + (showFeedback ? 1 : 0)}</span>
           </p>

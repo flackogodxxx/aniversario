@@ -308,7 +308,7 @@ export default function Home() {
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
-              fontSize: `${Math.random() * 24 + 12}px`,
+              fontSize: `${Math.random() * 16 + 10}px`,
               transform: `rotate(${Math.random() * 360}deg)`,
               animationDelay: `${Math.random() * 5}s`,
               animationDuration: `${Math.random() * 10 + 10}s`
@@ -327,9 +327,9 @@ export default function Home() {
         className="fixed inset-0 pointer-events-none transition-transform duration-200 ease-out"
         style={{ transformStyle: 'preserve-3d' }}
       >
-        <div className="fixed -top-20 -right-20 w-60 h-60 rounded-full bg-red-400/30 blur-3xl animate-pulse-soft"></div>
-        <div className="fixed top-1/3 -left-24 w-72 h-72 rounded-full bg-red-300/30 blur-3xl animate-pulse-soft" style={{ animationDelay: '1s' }}></div>
-        <div className="fixed -bottom-20 right-1/3 w-64 h-64 rounded-full bg-pink-200/20 blur-3xl animate-pulse-soft" style={{ animationDelay: '2s' }}></div>
+        <div className="fixed -top-16 -right-16 w-40 sm:w-60 h-40 sm:h-60 rounded-full bg-red-400/30 blur-3xl animate-pulse-soft"></div>
+        <div className="fixed top-1/3 -left-20 w-48 sm:w-72 h-48 sm:h-72 rounded-full bg-red-300/30 blur-3xl animate-pulse-soft" style={{ animationDelay: '1s' }}></div>
+        <div className="fixed -bottom-16 right-1/3 w-44 sm:w-64 h-44 sm:h-64 rounded-full bg-pink-200/20 blur-3xl animate-pulse-soft" style={{ animationDelay: '2s' }}></div>
       </div>
       
       {/* Confetti que continua na página principal */}
@@ -343,8 +343,8 @@ export default function Home() {
                 left: `${Math.random() * 100}%`,
                 top: `-5%`,
                 backgroundColor: `hsl(${hue}, 80%, ${isRed ? 60 : 65}%)`,
-                width: `${Math.random() * 10 + 5}px`,
-                height: `${Math.random() * 16 + 6}px`,
+                width: `${Math.random() * 8 + 4}px`,
+                height: `${Math.random() * 12 + 6}px`,
                 transform: `rotate(${Math.random() * 360}deg)`,
                 animationDuration: `${Math.random() * 3 + 2}s`,
                 animationDelay: `${Math.random() * 0.5}s`
@@ -361,50 +361,50 @@ export default function Home() {
       />
       
       {/* Container principal - melhorado para iOS */}
-      <div className="relative max-w-4xl mx-auto px-4 py-8 sm:px-5 sm:py-12 md:py-16 ios-content-container">
+      <div className="relative max-w-4xl mx-auto px-3 sm:px-4 py-5 sm:py-8 md:py-12 ios-content-container">
         {/* Banner de aniversário - bordas mais arredondadas */}
-        <div className="relative w-full flex justify-center mb-8 animate-fade-in-scale">
-          <div className="bg-white rounded-2xl p-4 shadow-lg ios-card">
-            <FaBirthdayCake className="text-3xl sm:text-4xl text-red-400 mb-1 mx-auto" />
-            <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-red-400 text-center">
+        <div className="relative w-full flex justify-center mb-4 sm:mb-8 animate-fade-in-scale">
+          <div className="bg-white rounded-2xl p-3 sm:p-4 shadow-lg ios-card">
+            <FaBirthdayCake className="text-2xl sm:text-3xl md:text-4xl text-red-400 mb-1 mx-auto" />
+            <h2 className="text-base sm:text-lg md:text-2xl font-bold text-red-400 text-center">
               Feliz Aniversário, Meu bem!
             </h2>
           </div>
         </div>
         
         {/* Contador de tempo juntos - redesenhado e harmonizado */}
-        <div className="relative w-full flex justify-center mb-12 animate-fade-in-scale" style={{ animationDelay: '0.2s' }}>
+        <div className="relative w-full flex justify-center mb-6 sm:mb-12 animate-fade-in-scale" style={{ animationDelay: '0.2s' }}>
           <div className="bg-white rounded-2xl shadow-lg ios-card max-w-lg w-full overflow-hidden">
             {/* Borda superior colorida para manter algum destaque visual */}
             <div className="h-1.5 w-full bg-gradient-to-r from-red-400 to-pink-400"></div>
             
             {/* Conteúdo principal com padding consistente */}
-            <div className="px-4 py-5 ios-content">
+            <div className="px-3 sm:px-4 py-3 sm:py-5 ios-content">
               {/* Título simplificado */}
-              <div className="flex items-center justify-center gap-2 mb-4">
-                <div className="w-8 h-8 rounded-full bg-red-400 flex items-center justify-center ios-icon">
+              <div className="flex items-center justify-center gap-2 mb-3 sm:mb-4">
+                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-red-400 flex items-center justify-center ios-icon">
                   <FaHeart className="text-white text-xs" />
                 </div>
-                <h3 className="text-xl font-bold text-red-500">
+                <h3 className="text-lg sm:text-xl font-bold text-red-500">
                   A gente se conhece faz quanto tempo?
                 </h3>
               </div>
               
               {/* Display do tempo com design mais plano e seguro para iOS */}
-              <div className="w-full max-w-md mx-auto py-4 px-3 rounded-xl bg-red-50 mb-4 ios-time-display">
+              <div className="w-full max-w-md mx-auto py-3 sm:py-4 px-2 sm:px-3 rounded-xl bg-red-50 mb-3 sm:mb-4 ios-time-display">
                 <div className="flex items-center justify-center">
                   <div className="inline-flex items-center mr-2">
-                    <FaHourglass className="text-red-500 text-lg" />
+                    <FaHourglass className="text-red-500 text-base sm:text-lg" />
                   </div>
-                  <p className="text-2xl sm:text-3xl font-bold text-gray-700 text-center">
+                  <p className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-700 text-center">
                     {timeTogetherText}
                   </p>
                 </div>
               </div>
               
               {/* Data de início simplificada */}
-              <div className="flex items-center justify-center text-sm text-gray-600 my-2">
-                <span className="inline-flex items-center gap-2">
+              <div className="flex items-center justify-center text-xs sm:text-sm text-gray-600 my-1 sm:my-2">
+                <span className="inline-flex items-center gap-1 sm:gap-2">
                   <FaCalendarAlt className="text-red-400" /> 
                   <span>Desde 7 de setembro de 2024</span>
                 </span>
@@ -414,22 +414,22 @@ export default function Home() {
         </div>
         
         {/* Cabeçalho - bordas mais arredondadas */}
-        <header className="text-center mb-10 sm:mb-16 animate-fade-in-scale bg-white rounded-2xl p-6 shadow-lg ios-card">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-red-400 mb-4 px-1">
+        <header className="text-center mb-6 sm:mb-10 md:mb-16 animate-fade-in-scale bg-white rounded-2xl p-4 sm:p-6 shadow-lg ios-card">
+          <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-red-400 mb-3 sm:mb-4 px-1">
             Para a pessoa que mais me odeia!
           </h1>
-          <div className="flex justify-center items-center gap-3 sm:gap-4 mt-4 sm:mt-6">
-            <div className="h-px w-10 sm:w-16 bg-gradient-to-r from-transparent to-red-300"></div>
-            <FaHeart className="text-red-400 heart-icon text-lg sm:text-xl animate-pulse" />
-            <div className="h-px w-10 sm:w-16 bg-gradient-to-l from-transparent to-red-300"></div>
+          <div className="flex justify-center items-center gap-2 sm:gap-3 mt-3 sm:mt-4">
+            <div className="h-px w-8 sm:w-12 bg-gradient-to-r from-transparent to-red-300"></div>
+            <FaHeart className="text-red-400 heart-icon text-base sm:text-lg animate-pulse" />
+            <div className="h-px w-8 sm:w-12 bg-gradient-to-l from-transparent to-red-300"></div>
           </div>
           
           {/* Mensagem personalizada baseada na pontuação do quiz e mensagem aleatória */}
-          <div className="mt-6 text-base text-center text-gray-700 animate-fade-in" style={{ animationDelay: '1s' }}>
+          <div className="mt-4 sm:mt-6 text-sm sm:text-base text-center text-gray-700 animate-fade-in" style={{ animationDelay: '1s' }}>
             <p className="font-serif italic">{randomMessage}</p>
             
             {localStorage.getItem('quizScore') && (
-              <p className="mt-4 text-sm text-gray-600">
+              <p className="mt-3 sm:mt-4 text-xs sm:text-sm text-gray-600">
                 {Number(localStorage.getItem('quizScore')) === 5 ? (
                   <span>Seu conhecimento sobre mim é perfeito. Me conhece como ninguém!</span>
                 ) : Number(localStorage.getItem('quizScore')) >= 3 ? (
@@ -443,13 +443,13 @@ export default function Home() {
         </header>
         
         {/* Seção de memórias - bordas mais arredondadas */}
-        <section className="mb-8 sm:mb-12 md:mb-16 bg-white rounded-2xl overflow-hidden p-4 sm:p-6 opacity-0 animate-fade-in shadow-lg ios-card" style={{ animationDelay: '0.3s', '--animation-order': '1' } as any}>
-          <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-center mb-5 text-red-400 flex items-center justify-center gap-2">
+        <section className="mb-6 sm:mb-8 md:mb-12 bg-white rounded-2xl overflow-hidden p-3 sm:p-6 opacity-0 animate-fade-in shadow-lg ios-card" style={{ animationDelay: '0.3s', '--animation-order': '1' } as any}>
+          <h2 className="text-base sm:text-lg md:text-xl font-semibold text-center mb-3 sm:mb-5 text-red-400 flex items-center justify-center gap-2">
             <FaCamera className="text-red-400" /> Nossas Histórias Compartilhadas
           </h2>
           
           <div className="mx-auto max-w-md">
-            <div className="relative rounded-xl overflow-hidden shadow-lg mb-5 single-image-container">
+            <div className="relative rounded-xl overflow-hidden shadow-lg mb-4 sm:mb-5 single-image-container">
               <div className="aspect-ratio-container" style={{ paddingBottom: '75%' }}>
                 <Image
                   src="/images/foto1.jpg"
@@ -462,30 +462,30 @@ export default function Home() {
               </div>
               
               {/* Overlay com gradiente suave */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent flex flex-col items-center justify-end p-4">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent flex flex-col items-center justify-end p-3 sm:p-4">
                 <button
                   onClick={() => setShowMemoryModal(true)}
-                  className="px-6 py-2.5 bg-white/90 hover:bg-white text-red-500 rounded-full font-medium text-sm transition-all duration-300 flex items-center gap-2 transform hover:scale-105 active:scale-95 mb-3 ios-button shadow-lg backdrop-blur-sm"
+                  className="px-4 sm:px-6 py-2 sm:py-2.5 bg-white/90 hover:bg-white text-red-500 rounded-full font-medium text-xs sm:text-sm transition-all duration-300 flex items-center gap-2 transform hover:scale-105 active:scale-95 mb-2 sm:mb-3 ios-button shadow-lg backdrop-blur-sm"
                 >
-                  Momento especial <FaHeart className="text-sm" />
+                  Momento especial <FaHeart className="text-xs sm:text-sm" />
                 </button>
               </div>
             </div>
           </div>
           
-          <div className="w-full flex justify-center mt-2">
-            <div className="h-1 w-16 sm:w-24 bg-gradient-to-r from-red-300 to-red-400 rounded-full"></div>
+          <div className="w-full flex justify-center mt-1 sm:mt-2">
+            <div className="h-1 w-12 sm:w-16 md:w-24 bg-gradient-to-r from-red-300 to-red-400 rounded-full"></div>
           </div>
         </section>
 
         {/* Mensagem personalizada - bordas mais arredondadas */}
-        <section className="mb-8 sm:mb-12 md:mb-16 bg-white rounded-2xl overflow-hidden p-5 sm:p-8 opacity-0 animate-fade-in shadow-lg ios-card" style={{ animationDelay: '0.6s', '--animation-order': '2' } as any}>
-          <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-center mb-4 sm:mb-6 text-red-400">
+        <section className="mb-6 sm:mb-8 md:mb-12 bg-white rounded-2xl overflow-hidden p-4 sm:p-6 md:p-8 opacity-0 animate-fade-in shadow-lg ios-card" style={{ animationDelay: '0.6s', '--animation-order': '2' } as any}>
+          <h2 className="text-base sm:text-lg md:text-xl font-semibold text-center mb-3 sm:mb-4 md:mb-6 text-red-400">
             Palavras do Coração <FaHeart className="inline text-red-400 heart-icon animate-pulse" />
           </h2>
           <div className="prose max-w-none relative">
-            <FaQuoteLeft className="absolute -top-2 -left-2 text-red-300 text-lg sm:text-xl opacity-50 animate-float" />
-            <p className="text-base sm:text-lg md:text-xl text-center italic text-gray-700 px-2 sm:px-6">
+            <FaQuoteLeft className="absolute -top-2 -left-2 text-red-300 text-base sm:text-lg opacity-50 animate-float" />
+            <p className="text-sm sm:text-base md:text-lg text-center italic text-gray-700 px-1 sm:px-4">
               Hoje é seu dia especial, e quero que saiba o quanto você é importante para mim.
               Desde que nos conhecemos, cada momento se transformou em uma memória preciosa.
               Seu sorriso ilumina meus dias, sua força me inspira.
@@ -493,37 +493,36 @@ export default function Home() {
               Estarei sempre ao seu lado, celebrando cada conquista e superando cada desafio juntos.
               ❤️
             </p>
-            <FaQuoteRight className="absolute -bottom-2 -right-2 text-red-300 text-lg sm:text-xl opacity-50 animate-float" style={{ animationDelay: '0.5s' }} />
+            <FaQuoteRight className="absolute -bottom-2 -right-2 text-red-300 text-base sm:text-lg opacity-50 animate-float" style={{ animationDelay: '0.5s' }} />
           </div>
         </section>
 
         {/* Rodapé com elementos de design iOS */}
-        <footer className="mt-12 sm:mt-16 pt-6 sm:pt-8 stagger-animation" style={{ '--animation-order': '4' } as any}>
-          <div className="bg-white rounded-2xl p-6 shadow-lg text-center max-w-md mx-auto ios-card">
-            <FaHeart className="text-red-400 text-2xl mx-auto mb-4" />
-            <h2 className="text-lg sm:text-xl md:text-2xl font-semibold mb-4 text-red-400">
+        <footer className="mt-8 sm:mt-12 pt-4 sm:pt-6 md:pt-8 stagger-animation" style={{ '--animation-order': '4' } as any}>
+          <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-lg text-center max-w-md mx-auto ios-card">
+            <FaHeart className="text-red-400 text-xl sm:text-2xl mx-auto mb-3 sm:mb-4" />
+            <h2 className="text-base sm:text-lg md:text-xl font-semibold mb-3 sm:mb-4 text-red-400">
               Com Todo Meu Odio
             </h2>
-            <p className="text-gray-700 mb-6">
+            <p className="text-sm sm:text-base text-gray-700 mb-3 sm:mb-6">
               Que cada dia ao seu lado seja mais especial que o anterior.
-          
             </p>
           </div>
           
           {/* Modal de memórias - design iOS */}
           {showMemoryModal && MEMORIAS.length > 0 && (
             <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-md" onClick={() => setShowMemoryModal(false)}>
-              <div className="bg-white p-6 rounded-2xl max-w-md w-full animate-fade-in-scale shadow-xl mx-4 ios-modal" onClick={(e) => e.stopPropagation()}>
-                <h3 className="text-xl font-bold text-red-400 mb-3 flex items-center gap-2">
+              <div className="bg-white p-4 sm:p-6 rounded-2xl max-w-md w-full animate-fade-in-scale shadow-xl mx-3 sm:mx-4 ios-modal" onClick={(e) => e.stopPropagation()}>
+                <h3 className="text-lg sm:text-xl font-bold text-red-400 mb-2 sm:mb-3 flex items-center gap-2">
                   <FaCalendarAlt /> {MEMORIAS[0].data}
                 </h3>
-                <h4 className="text-lg font-semibold mb-4">{MEMORIAS[0].evento}</h4>
-                <p className="text-gray-800 mb-6 italic">"{MEMORIAS[0].descricao}"</p>
+                <h4 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">{MEMORIAS[0].evento}</h4>
+                <p className="text-sm sm:text-base text-gray-800 mb-4 sm:mb-6 italic">"{MEMORIAS[0].descricao}"</p>
                 
                 <div className="flex justify-center">
                   <button 
                     onClick={(e) => { e.stopPropagation(); setShowMemoryModal(false); }}
-                    className="px-5 py-2 bg-red-400 hover:bg-red-500 text-white rounded-full text-sm ios-button"
+                    className="px-4 sm:px-5 py-2 bg-red-400 hover:bg-red-500 text-white rounded-full text-xs sm:text-sm ios-button"
                   >
                     Fechar
                   </button>

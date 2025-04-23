@@ -74,16 +74,16 @@ export default function BackgroundMusic({ audioSrc, autoPlay = false }: Backgrou
   };
 
   return (
-    <div className="fixed bottom-4 sm:bottom-6 left-3 sm:left-6 z-50">
+    <div className="fixed bottom-3 sm:bottom-4 left-3 sm:left-6 z-50">
       <div className="relative group">
         <button
           onClick={togglePlay}
           onMouseEnter={() => !isMobile && setShowVolume(true)}
           onTouchStart={() => isMobile && setShowVolume(!showVolume)}
-          className="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-white dark:bg-card-bg-dark text-primary-color rounded-full shadow-lg hover:shadow-xl transition-all duration-300 border border-primary-light/30 dark:border-primary-dark/30 transform hover:scale-105"
+          className="flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 bg-white dark:bg-card-bg-dark text-primary-color rounded-full shadow-lg hover:shadow-xl transition-all duration-300 border border-primary-light/30 dark:border-primary-dark/30 transform hover:scale-105"
           aria-label={isPlaying ? 'Pausar música' : 'Tocar música'}
         >
-          {isPlaying ? <FaVolumeUp size={isMobile ? 16 : 20} /> : <FaMusic size={isMobile ? 16 : 20} />}
+          {isPlaying ? <FaVolumeUp size={isMobile ? 18 : 20} /> : <FaMusic size={isMobile ? 18 : 20} />}
         </button>
         
         {/* Tooltip - apenas para desktop */}
@@ -95,7 +95,7 @@ export default function BackgroundMusic({ audioSrc, autoPlay = false }: Backgrou
         
         {/* Controle de volume */}
         <div 
-          className={`absolute -top-16 sm:-top-20 left-1/2 -translate-x-1/2 p-2 sm:p-3 bg-white dark:bg-card-bg-dark rounded-lg shadow-lg transition-all duration-300 ${showVolume ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
+          className={`absolute -top-14 sm:-top-16 left-1/2 -translate-x-1/2 p-2 sm:p-3 bg-white dark:bg-card-bg-dark rounded-lg shadow-lg transition-all duration-300 ${showVolume ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
           onMouseEnter={() => !isMobile && setShowVolume(true)}
           onMouseLeave={() => !isMobile && setShowVolume(false)}
           onClick={(e) => isMobile && e.stopPropagation()}
@@ -107,7 +107,7 @@ export default function BackgroundMusic({ audioSrc, autoPlay = false }: Backgrou
             step="0.01"
             value={volume}
             onChange={handleVolumeChange}
-            className="w-20 sm:w-24 accent-primary-color"
+            className="w-18 sm:w-24 accent-primary-color"
           />
         </div>
       </div>

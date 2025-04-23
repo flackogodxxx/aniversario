@@ -1,4 +1,7 @@
 @import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   --background: #f8f9fc;
@@ -15,6 +18,7 @@
   --card-bg-dark: rgba(38, 40, 54, 0.9);
   --primary-color-rgb: 110, 120, 255;
   --secondary-color-rgb: 100, 223, 223;
+  --app-height: 100%;
 }
 
 @theme inline {
@@ -478,4 +482,135 @@ button:active, .button:active {
 
 .celebration-confetti .confetti-piece {
   animation-duration: 4s !important;
+}
+
+/* Estilos específicos para dispositivos móveis */
+@media (max-width: 640px) {
+  html, body {
+    max-width: 100vw;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .min-h-screen {
+    min-height: 100vh; /* Fallback */
+    min-height: -webkit-fill-available;
+    min-height: stretch;
+  }
+  
+  /* Melhorar experiência de toque */
+  button, a, input {
+    min-height: 40px;
+    touch-action: manipulation;
+  }
+  
+  /* Impedir o scroll indesejado */
+  .overflow-scroll {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Corrigir problemas em containers de altura fixa */
+  .h-screen {
+    height: 100vh; /* Fallback */
+    height: -webkit-fill-available;
+    height: stretch;
+  }
+  
+  /* Garantir que o quiz caiba inteiramente na tela */
+  .quiz-container {
+    max-height: 100vh;
+    max-height: -webkit-fill-available;
+    max-height: stretch;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Fazer o quiz usar todo o espaço disponível em telas pequenas */
+  .quiz-content {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    border-radius: 0.5rem;
+  }
+}
+
+/* Esconder scrollbar mas manter funcionalidade */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE e Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari e Opera */
+}
+
+/* Classes utilitárias para visualmente ocultar conteúdo, mantendo acessibilidade */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Solução para o Safari iOS e o viewport height */
+@supports (-webkit-touch-callout: none) {
+  body, .min-h-screen, .h-screen {
+    height: var(--app-height);
+  }
+}
+
+/* Animações e transições */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+
+/* Melhoria para o toque em dispositivos iOS */
+@supports (-webkit-touch-callout: none) {
+  button, a {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Evitar problemas com sticky hover em dispositivos touch */
+  @media (hover: hover) {
+    button:hover, a:hover {
+      opacity: 0.8;
+    }
+  }
+  
+  /* Remover efeitos de hover em dispositivos touch */
+  @media (hover: none) {
+    button:hover, a:hover {
+      opacity: 1;
+    }
+  }
+}
+
+/* Fix para problema de viewport em iOS */
+@media screen and (max-width: 640px) {
+  .ios-fix {
+    height: -webkit-fill-available;
+  }
+}
+
+/* Classes para tratamento de texto em dispositivos móveis */
+.mobile-text-adjust {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
