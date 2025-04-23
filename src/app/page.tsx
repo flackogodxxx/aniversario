@@ -502,7 +502,7 @@ export default function Home() {
           <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-lg text-center max-w-md mx-auto ios-card">
             <FaHeart className="text-red-400 text-xl sm:text-2xl mx-auto mb-3 sm:mb-4" />
             <h2 className="text-base sm:text-lg md:text-xl font-semibold mb-3 sm:mb-4 text-red-400">
-              Com Todo Meu Odio
+              Com Todo Meu Odio (meme obvio)
             </h2>
             <p className="text-sm sm:text-base text-gray-700 mb-3 sm:mb-6">
               Que cada dia ao seu lado seja mais especial que o anterior.
