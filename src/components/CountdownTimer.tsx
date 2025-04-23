@@ -8,6 +8,15 @@ interface CountdownTimerProps {
   isElapsedTime?: boolean; // Novo parâmetro para indicar se é contagem de tempo decorrido
 }
 
+// Interface para o renderizador do Countdown
+interface RendererProps {
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
+  completed: boolean;
+}
+
 export default function CountdownTimer({ targetDate, eventName, isElapsedTime = false }: CountdownTimerProps) {
   // Estado para armazenar o tempo decorrido
   const [elapsedTime, setElapsedTime] = useState({
@@ -98,7 +107,7 @@ export default function CountdownTimer({ targetDate, eventName, isElapsedTime = 
   };
 
   // Renderizador personalizado para a contagem regressiva
-  const renderer = ({ days, hours, minutes, seconds, completed }: any) => {
+  const renderer = ({ days, hours, minutes, seconds, completed }: RendererProps) => {
     if (completed) {
       return (
         <div className="text-center bg-primary-light/40 dark:bg-primary-dark/40 rounded-xl shadow-lg overflow-hidden p-4 sm:p-6">

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { FaMusic, FaVolumeMute, FaVolumeUp } from 'react-icons/fa';
+import { FaMusic, FaVolumeUp } from 'react-icons/fa';
 
 interface BackgroundMusicProps {
   audioSrc: string;
@@ -43,10 +43,13 @@ export default function BackgroundMusic({ audioSrc, autoPlay = false }: Backgrou
       }
     }
     
+    // Corrigindo a referência para o cleanup function
+    const audioRefCurrent = audioRef.current;
+    
     return () => {
       window.removeEventListener('resize', checkMobile);
-      if (audioRef.current) {
-        audioRef.current.pause();
+      if (audioRefCurrent) {
+        audioRefCurrent.pause();
       }
     };
   }, [autoPlay, volume]);

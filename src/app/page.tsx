@@ -2,30 +2,10 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import PhotoGallery from '@/components/PhotoGallery';
-import CountdownTimer from '@/components/CountdownTimer';
-import QRCodeMessage from '@/components/QRCodeMessage';
-import ShareButtons from '@/components/ShareButtons';
 import BackgroundMusic from '@/components/BackgroundMusic';
 import Quiz from '@/components/Quiz';
-import { FaHeart, FaQuoteLeft, FaQuoteRight, FaUnlock, FaGift, FaBirthdayCake, FaStar, FaCamera, FaCalendarAlt, FaClock, FaMapMarkerAlt, FaHourglass, FaMoon, FaSun } from 'react-icons/fa';
+import { FaHeart, FaQuoteLeft, FaQuoteRight, FaUnlock, FaGift, FaBirthdayCake, FaStar, FaCamera, FaCalendarAlt, FaHourglass } from 'react-icons/fa';
 import Head from 'next/head';
-
-// Dados simulados para a galeria (substitua com suas próprias imagens)
-const PHOTOS = [
-  {
-    src: '/images/foto1.jpg',
-    alt: 'Momento especial 1',
-  },
-  {
-    src: '/images/foto2.jpg',
-    alt: 'Momento especial 2',
-  },
-  {
-    src: '/images/foto3.jpg',
-    alt: 'Momento especial 3',
-  },
-];
 
 // Lembranças especiais - adicione eventos reais de vocês
 const MEMORIAS = [
@@ -60,7 +40,6 @@ export default function Home() {
   const [showUnlockAnimation, setShowUnlockAnimation] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
   const [transitionState, setTransitionState] = useState('initial');
-  const [currentMemory, setCurrentMemory] = useState(0);
   const [showMemoryModal, setShowMemoryModal] = useState(false);
   const [randomMessage, setRandomMessage] = useState("");
   const [timeTogetherText, setTimeTogetherText] = useState("");
@@ -185,14 +164,13 @@ export default function Home() {
     setTransitionState('unlock');
     setShowUnlockAnimation(true);
     
-    let mensagem = "";
     // Personalizar a mensagem baseada na pontuação
     if (score === 5) {
-      mensagem = "UAU! Você acertou todas! Você realmente me conhece muito bem! ❤️";
+      // Mensagem para pontuação máxima
     } else if (score >= 3) {
-      mensagem = "Muito bom! Você acertou " + score + " de 5 perguntas. Estamos no caminho certo!";
+      // Mensagem para pontuação boa
     } else {
-      mensagem = "Hmm... Apenas " + score + " de 5 acertos. Precisamos conversar mais!";
+      // Mensagem para pontuação baixa
     }
     
     // Segundo passo - após 3 segundos, iniciar efeito de desvanecimento
@@ -222,22 +200,6 @@ export default function Home() {
       setRandomMessage(MENSAGENS_ANIVERSARIO[randomIndex]);
     }
   }, [quizCompleted]);
-  
-  // Função para navegar pelas memórias
-  const handleNextMemory = () => {
-    // Como agora só temos um item no array, não precisamos navegar
-    // Mantemos o índice em 0
-    setCurrentMemory(0);
-  };
-  
-  const handlePrevMemory = () => {
-    // Como agora só temos um item no array, não precisamos navegar
-    // Mantemos o índice em 0
-    setCurrentMemory(0);
-  };
-
-  // Obter URL da página atual para compartilhamento
-  const pageUrl = isMounted ? window.location.href : '';
 
   // Função otimizada para eventos de toque
   const handleTouchStart = (e: React.TouchEvent) => {
